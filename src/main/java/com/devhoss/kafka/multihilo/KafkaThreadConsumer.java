@@ -22,7 +22,8 @@ public class KafkaThreadConsumer extends Thread {
 	@Override
 	public void run() {
 		try{
-			consumer.subscribe(Arrays.asList("testtopicreplication3")); while(!closed.get()) {
+			consumer.subscribe(Arrays.asList("testtopicreplication3"));
+			while(!closed.get()) {
 				ConsumerRecords<String, String>records = consumer.poll(Duration.ofMillis(10000));
 				for(ConsumerRecord<String, String> record : records) {
 					log.debug("partition = {} ,offset = {}, key = {}, value ={}",record.partition(), record.offset(),record.key(),record.value());
